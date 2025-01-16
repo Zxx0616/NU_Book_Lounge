@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NU Book Lounge</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Welcome to NU Book Lounge</h1>
+    
+    <!-- Search Bar -->
+    <div class="search-container">
+        <form method="POST" action="/">
+            <input type="text" name="search_query" placeholder="Search for books..." value="{{ request.form.get('search_query', '') }}">
+        </form>
+    </div>
+    
+    <h2>Browse Our Collection:</h2>
+    <ul>
+        {% for book in books %}
+            <li>
+                <h3>{{ book['title'] }}</h3>
+                <p>Author: {{ book['author'] }}</p>
+                <p>Category: {{ book['category'] }}</p>
+            </li>
+        {% endfor %}
+    </ul>
+
+    <h2>New Releases:</h2>
+    <ul>
+        {% for book in new_books %}
+            <li>
+                <h3>{{ book['title'] }}</h3>
+                <p>Author: {{ book['author'] }}</p>
+                <p>Category: {{ book['category'] }}</p>
+                <p>Added: {{ book['added_date'] }}</p>
+            </li>
+        {% endfor %}
+    </ul>
+
+    <footer>
+        <p>NU Book Lounge © 2025</p>
+    </footer>
+</body>
+</html>
